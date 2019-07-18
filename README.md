@@ -1,15 +1,4 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 Simple 3-match game 
 
-This project has been created using **webpack scaffold**, you can now run
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+# [Play](/dist/index.html)
