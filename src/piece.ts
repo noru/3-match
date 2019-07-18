@@ -15,7 +15,7 @@ export class Piece {
 
   static isMatch(p1: Piece | null, p2: Piece | null) {
     if (!p1 || !p2) {
-      return
+      return false
     }
     return p1.isMatch(p2)
   }
