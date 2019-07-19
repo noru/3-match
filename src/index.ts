@@ -1,4 +1,4 @@
 import { Looper } from './looper'
 
-let manager = new Looper()
-manager.init(10, 10)
+let looper = new Looper()
+looper.init(10, 10)

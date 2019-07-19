@@ -117,7 +117,7 @@ describe('board', () => {
     expect(board.status.layout.filter(p => p!.status === 'matched').length).toBe(25)
   })
 
-  test.only('match: non-square', () => {
+  test('match: non-square', () => {
     let board = new Board(6, 2, mockDispatch)
     let someMatch = b`
       111221

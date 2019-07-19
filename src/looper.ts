@@ -20,16 +20,16 @@ export class Looper {
     return this.busyUntil > Now()
   }
 
-  init(width = 10, height = 10) {
-    let initPieces = generateInitPieces(width, height)
-    let board = new Board(width, height, this.dispatch)
+  init(col = 10, row = 10, width = 750) {
+    let initPieces = generateInitPieces(col, row)
+    let board = new Board(col, row, this.dispatch)
     board.fill(initPieces)
     while (board.match() > 0) {
       board.clearMathced()
       board.fillNew()
     }
     board.clearScore()
-    this.renderer = new Renderer(board)
+    this.renderer = new Renderer(board, width)
     this.renderer.init()
     this.board = board
 

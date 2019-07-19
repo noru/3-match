@@ -6,15 +6,16 @@ import './styles.scss'
 import { randomInt } from 'noru-utils'
 
 const PlaygroundSelector = '#playground'
-const BoardSize = 750 // px
 const PieceTemplate = document.createElement('div')
-PieceTemplate
+PieceTemplate.className = 'piece'
 
 export class Renderer {
-  constructor(board: Board) {
+  constructor(board: Board, width: Int) {
     this.board = board
+    this.width = width
   }
   board: Board
+  width = 750
   score: HTMLDivElement | null = null
   container: HTMLDivElement | null = null
   pieceTemplate: HTMLDivElement | null = null
@@ -42,12 +43,11 @@ export class Renderer {
       this.container = div
     }
 
-    this.container.style.width = `${BoardSize}px`
-    this.container.style.height = `${(BoardSize * row) / col}px`
-    this.pieceSize = BoardSize / col
+    this.container.style.width = `${this.width}px`
+    this.container.style.height = `${(this.width * row) / col}px`
+    this.pieceSize = this.width / col
 
-    this.pieceTemplate = document.createElement('div')
-    this.pieceTemplate.className = 'piece'
+    this.pieceTemplate = PieceTemplate
     this.pieceTemplate.style.width = this.pieceSize + 'px'
     this.pieceTemplate.style.height = this.pieceSize + 'px'
     this.pieceTemplate.style.fontSize = this.pieceSize - 4 + 'px'

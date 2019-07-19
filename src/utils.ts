@@ -20,6 +20,10 @@ export function getRandomPiece(x: Int = -1, y: Int = -1): Piece {
   return new Piece(randomInt(1, 5), x, y)
 }
 
-export function indexToPos(index: Int, row: Int, col: Int): [number, number] {
-  return [index % col, Math.floor(index / row)]
+export function indexToPos(index: Int, col: Int): [Int, Int] {
+  return [index % col, Math.floor(index / col)]
+}
+
+export function posToIndex(x: Int, y: Int, col: Int): Int {
+  return x + y * col
 }

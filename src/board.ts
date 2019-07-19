@@ -3,7 +3,7 @@ import { Piece } from './piece'
 import { swap } from 'noru-utils'
 import { Dispatch } from './looper'
 import { Action } from './action'
-import { debug, getRandomPiece, indexToPos } from './utils'
+import { debug, getRandomPiece, indexToPos, posToIndex } from './utils'
 import { Tick } from './looper'
 
 export interface Status {
@@ -73,7 +73,7 @@ export class Board {
     for (let rowStart = 0; rowStart < this.layout.length; rowStart += this.colSize) {
       this.matchingRow(rowStart)
     }
-    for (let colIndex = 0; colIndex < this.rowSize; colIndex++) {
+    for (let colIndex = 0; colIndex < this.colSize; colIndex++) {
       this.matchingCol(colIndex)
     }
     return layout.filter(p => p && p.status === 'matched').length
@@ -104,7 +104,7 @@ export class Board {
   matchingCol(colIndex: Int) {
     let streaks: Layout = new Array()
     for (let row = 0; row < this.rowSize; row++) {
-      let current = this.layout[colIndex + row * this.rowSize]
+      let current = this.layout[colIndex + row * this.colSize]
       let matchTarget = streaks[0]
       if (!matchTarget) {
         streaks.push(current)
@@ -175,11 +175,11 @@ export class Board {
 
   getPieceIndex(p: Piece): Int {
     let [x, y] = p.pos
-    return x + y * this.rowSize
+    return posToIndex(x, y, this.colSize)
   }
 
   indexToPos(idx: Int): [number, number] {
-    return indexToPos(idx, this.rowSize, this.colSize)
+    return indexToPos(idx, this.colSize)
   }
 
   debug_print() {
