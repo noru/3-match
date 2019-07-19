@@ -16,8 +16,6 @@ function b(str: string | TemplateStringsArray = '') {
     row.split('').forEach((val, j) => result.push(new Piece(+val, j, i)))
   })
 
-  console.log(result)
-
   return result
 }
 

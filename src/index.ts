@@ -8,7 +8,6 @@ const OptimalDemension = 10
 function determineLayout() {
   let totalHeight = Math.min(window.innerHeight, MaxWidth) - 80 - window.innerHeight * 0.05 // score height + padding
   let totalWidth = Math.min(window.innerWidth, MaxWidth) - window.innerWidth * 0.05
-  console.log(totalWidth)
   let colOption = [Math.floor(totalWidth / MaxSize), Math.floor(totalWidth / MinSize)]
   let rowOption = [Math.floor(totalHeight / MaxSize), Math.floor(totalHeight / MinSize)]
 
