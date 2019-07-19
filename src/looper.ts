@@ -38,13 +38,12 @@ export class Looper {
 
   loop = () => {
     this.animationFrameId = requestAnimationFrame(this.loop)
-    if (this.isBusy) return
-
-    let action = this.actionQueue.shift()
-    if (action) {
-      this.busyUntil = Now() + (action.delay || Tick)
-      this.handleAction(action)
+    if (this.isBusy || this.actionQueue.length === 0) {
+      return
     }
+    let action = this.actionQueue.shift()!
+    this.busyUntil = Now() + (action.delay || Tick)
+    this.handleAction(action)
   }
 
   stop() {
