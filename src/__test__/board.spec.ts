@@ -28,7 +28,7 @@ describe('board', () => {
       row: 5,
       col: 4,
       matchSize: 3,
-      pieces: new Array(20),
+      layout: new Array(20),
       score: 0,
     })
   })
