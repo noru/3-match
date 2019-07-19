@@ -1,10 +1,10 @@
 import { Int } from './types'
 import { Piece } from './piece'
 import { swap } from 'noru-utils'
-import { Dispatch } from './manager'
+import { Dispatch } from './looper'
 import { Action } from './action'
 import { debug, getRandomPiece, indexToPos } from './utils'
-import { Tick } from './manager'
+import { Tick } from './looper'
 
 export interface Status {
   score: number
@@ -14,7 +14,7 @@ export interface Status {
   layout: Layout
 }
 export type Layout = (Piece | null)[]
-export type Subscriber = (layout: Layout, status: Status) => void
+export type Subscriber = (changed: Layout, status: Status) => void
 
 export class Board {
   private layout: Layout = new Array()
@@ -57,36 +57,6 @@ export class Board {
   subscribe(sub: Subscriber) {
     this.subscribers.push(sub)
     sub(this.layout, this.status)
-  }
-
-  debug_print() {
-    let lines = new Array()
-    for (let row = 0; row < this.rowSize; row++) {
-      lines.push(
-        this.layout
-          .slice(row * this.colSize, row * this.colSize + this.colSize)
-          .map(p => (p ? p.shape : '*'))
-          .join(' ')
-      )
-    }
-    console.info(lines.join('\n'))
-  }
-
-  debug_printMatched() {
-    let lines = new Array()
-    for (let row = 0; row < this.rowSize; row++) {
-      lines.push(
-        this.layout
-          .slice(row * this.colSize, row * this.colSize + this.colSize)
-          .map(p => (p ? (p.status === 'matched' ? `(${p.shape})` : ` ${p.shape} `) : ' * '))
-          .join(' ')
-      )
-    }
-    console.info(lines.join('\n'))
-  }
-
-  indexToPos(idx: Int): [number, number] {
-    return indexToPos(idx, this.rowSize, this.colSize)
   }
 
   fill(pieces: Layout) {
@@ -152,8 +122,8 @@ export class Board {
   }
 
   swap(p1: Piece, p2: Piece) {
-    this.lastSwapped = [p1, p2]
     debug('swap', p1, p2)
+    this.lastSwapped = [p1, p2]
     swap(this.layout, this.getPieceIndex(p1), this.getPieceIndex(p2))
     p1.swap(p2)
   }
@@ -184,11 +154,6 @@ export class Board {
     debug('score', this.score)
   }
 
-  getPieceIndex(p: Piece): Int {
-    let [x, y] = p.pos
-    return x + y * this.rowSize
-  }
-
   onPieceClick(piece: Piece) {
     debug('click', piece)
     if (this.selected) {
@@ -206,5 +171,40 @@ export class Board {
   replace() {
     this.dispatch(new Action('clearMatched', undefined, Tick))
     this.dispatch(new Action('fillNew', undefined, 500))
+  }
+
+  getPieceIndex(p: Piece): Int {
+    let [x, y] = p.pos
+    return x + y * this.rowSize
+  }
+
+  indexToPos(idx: Int): [number, number] {
+    return indexToPos(idx, this.rowSize, this.colSize)
+  }
+
+  debug_print() {
+    let lines = new Array()
+    for (let row = 0; row < this.rowSize; row++) {
+      lines.push(
+        this.layout
+          .slice(row * this.colSize, row * this.colSize + this.colSize)
+          .map(p => (p ? p.shape : '*'))
+          .join(' ')
+      )
+    }
+    console.info(lines.join('\n'))
+  }
+
+  debug_printMatched() {
+    let lines = new Array()
+    for (let row = 0; row < this.rowSize; row++) {
+      lines.push(
+        this.layout
+          .slice(row * this.colSize, row * this.colSize + this.colSize)
+          .map(p => (p ? (p.status === 'matched' ? `(${p.shape})` : ` ${p.shape} `) : ' * '))
+          .join(' ')
+      )
+    }
+    console.info(lines.join('\n'))
   }
 }

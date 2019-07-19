@@ -50,6 +50,7 @@ export class Renderer {
     this.pieceTemplate.className = 'piece'
     this.pieceTemplate.style.width = this.pieceSize + 'px'
     this.pieceTemplate.style.height = this.pieceSize + 'px'
+    this.pieceTemplate.style.fontSize = this.pieceSize - 4 + 'px'
 
     this.board.subscribe(this.onBoardChange)
   }

@@ -1,13 +1,4 @@
-import { Manager } from './manager'
+import { Looper } from './looper'
 
-let manager = new Manager()
-
-manager.init(15, 15)
-
-declare global {
-  interface Window {
-    $m: any
-  }
-}
-
-window.$m = manager
+let manager = new Looper()
+manager.init(10, 11)

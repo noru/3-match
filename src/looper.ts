@@ -9,7 +9,7 @@ export type Dispatch = (act: Action) => void
 const Now = Date.now
 export const Tick: Ms = 200
 
-export class Manager {
+export class Looper {
   private busyUntil: Timestamp = Now()
   private actionQueue: Action[] = new Array()
   private animationFrameId: number = 0

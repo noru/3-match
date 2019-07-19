@@ -1,6 +1,6 @@
 import { Ms } from './types'
 
-export type ActionType = 'match' | 'select' | 'move' | 'replace' | 'clearMatched' | 'fillNew' | 'reverse'
+export type ActionType = 'match' | 'select' | 'move' | 'replace' | 'reverse' | 'clearMatched' | 'fillNew'
 export type Data = any
 
 export class Action {
