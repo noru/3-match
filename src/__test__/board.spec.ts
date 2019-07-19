@@ -117,6 +117,32 @@ describe('board', () => {
     expect(board.status.layout.filter(p => p!.status === 'matched').length).toBe(25)
   })
 
+  test.only('match: non-square', () => {
+    let board = new Board(6, 2, mockDispatch)
+    let someMatch = b`
+      111221
+      132221
+    `
+    board.fill(someMatch)
+    board.match()
+    board.debug_printMatched()
+    expect(board.status.layout.filter(p => p!.status === 'matched').length).toBe(6)
+
+    board = new Board(2, 6, mockDispatch)
+    someMatch = b`
+      22
+      22
+      23
+      12
+      13
+      12
+    `
+    board.fill(someMatch)
+    board.match()
+    board.debug_printMatched()
+    expect(board.status.layout.filter(p => p!.status === 'matched').length).toBe(6)
+  })
+
   test('swap', () => {
     let board = new Board(3, 3, mockDispatch)
 

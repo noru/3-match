@@ -19,6 +19,7 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       title: '3 match',
+      template: 'src/index.html',
     }),
   ],
 
