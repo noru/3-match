@@ -40,6 +40,10 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.(mp3|wav)$/,
+        use: 'url-loader',
+      },
     ],
   },
 

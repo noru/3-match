@@ -6,4 +6,9 @@ declare global {
   interface Window {
     $m: any
   }
+
+  interface HTMLMediaElement {
+    stop()
+    replay()
+  }
 }

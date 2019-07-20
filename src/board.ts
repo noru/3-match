@@ -161,9 +161,11 @@ export class Board {
         this.dispatch(new Action('move', [piece, this.selected], Tick))
         this.selected = null
       } else {
+        this.dispatch(new Action('select'))
         this.selected = piece
       }
     } else {
+      this.dispatch(new Action('select'))
       this.selected = piece
     }
   }
