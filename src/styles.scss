@@ -19,10 +19,22 @@ body {
 }
 
 .score-board {
+  padding-top: 12px;
+  font-size: 24px;
   text-align: center;
   font-family: sans-serif;
   color: #FFFFFF;
   text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+
+  span:first-of-type {
+    margin-right: 18px;
+  }
+
+  span:last-of-type {
+    font-size: 1.6em;
+    vertical-align: sub;
+  }
+
 }
 
 .playground {

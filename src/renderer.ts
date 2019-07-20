@@ -16,7 +16,7 @@ export class Renderer {
   }
   board: Board
   width = 750
-  score: HTMLDivElement | null = null
+  score: HTMLElement | null = null
   container: HTMLDivElement | null = null
   pieceTemplate: HTMLDivElement | null = null
   pieceSize: Int = 0
@@ -31,7 +31,7 @@ export class Renderer {
       div.className = 'score-board'
       document.body.appendChild(div)
       div.innerHTML = '<span>Score</span>'
-      let h1 = document.createElement('h1')
+      let h1 = document.createElement('span')
       div.appendChild(h1)
       this.score = h1
     }
