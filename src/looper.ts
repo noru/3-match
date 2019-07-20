@@ -4,6 +4,7 @@ import { Renderer } from './renderer'
 import { Board } from './board'
 import { Piece } from './piece'
 import { debug, generateInitPieces } from './utils'
+import { AudioManager } from './audio';
 
 export type Dispatch = (act: Action) => void
 const Now = Date.now
@@ -15,6 +16,7 @@ export class Looper {
   private animationFrameId: number = 0
   private renderer?: Renderer
   private board?: Board
+  private audioManager: AudioManager = new AudioManager()
 
   get isBusy() {
     return this.busyUntil > Now()
@@ -62,6 +64,7 @@ export class Looper {
   handleAction(action: Action) {
     let board = this.board!
     debug('handle action', action)
+    this.audioManager.on(action)
     switch (action.type) {
       case 'move':
         board.swap(...(action.data as [Piece, Piece]))
