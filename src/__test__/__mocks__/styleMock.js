@@ -1,1 +1,1 @@
-module.exports = 'file stub'
+module.exports = 'style stub'

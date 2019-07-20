@@ -34,7 +34,7 @@ module.exports = {
             options: { allowTsInNodeModules: true },
           },
         ],
-        include: [/node_modules\/noru-utils/, path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, './node_modules/noru-utils'), path.resolve(__dirname, 'src')],
       },
       {
         test: /\.scss$/,
@@ -42,7 +42,14 @@ module.exports = {
       },
       {
         test: /\.(mp3|wav)$/,
-        use: 'url-loader',
+        loader: [
+          {
+            loader: 'url-loader',
+            options:{
+              limit: 20000,
+            }
+          }
+        ], 
       },
     ],
   },

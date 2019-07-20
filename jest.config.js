@@ -8,7 +8,7 @@ module.exports = {
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!**/js/*', '!**/js/types/**'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/src/js/__mocks__/fileMock.js',
+      '<rootDir>/src/__test__/__mocks__/fileMock.js',
     '\\.(css|less|scss|sass)$': '<rootDir>/src/__test__/__mocks__/styleMock.js',
     ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
   },
