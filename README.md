@@ -2,6 +2,8 @@
 
 # Just 🚀[PLAY!](https://blog.xiuz.hu/3-match/dist/index.html)🚀
 
+**Alert: it plays 🔊audio🔊**
+
 ## It should work with modern browsers. If not, I don't care.
 
 ### Code guide
